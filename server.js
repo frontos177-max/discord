@@ -63,6 +63,10 @@ wss.on('connection', (ws, req) => {
 
 server.listen(PORT, () => console.log(`server running on :${PORT}`))
 
+process.on('SIGTERM', () => {
+  console.log('SIGTERM received, staying alive...')
+})
+
 // ---- Discord bot ----
 const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 
