@@ -6,7 +6,7 @@ const { Client, GatewayIntentBits, REST, Routes, SlashCommandBuilder } = require
 
 const PORT = process.env.PORT || 8080
 const SECRET = process.env.SECRET || 'babkapaste'
-const BOT_TOKEN = process.env.BOT_TOKEN || 'MTQ4OTU0NDY4OTc1MjQ3MzcxMA.GF-QfJ.JNivo9JO_PgIHygFJcOAS2TkConf8mSt-RZSsM'
+const BOT_TOKEN = process.env.BOT_TOKEN || ''
 const GUILD_ID = process.env.GUILD_ID || ''
 
 // kill list: set of pc names to kill
@@ -99,12 +99,12 @@ client.on('interactionCreate', async interaction => {
   if (interaction.commandName === 'kill') {
     const pc = interaction.options.getString('pc')
     killList.add(pc)
-    await interaction.reply({ content: `✅ Kill command queued for **${pc}**`, ephemeral: true })
+    await interaction.reply({ content: `✅ Kill command queued for **${pc}**`, flags: 64 })
   }
 
   if (interaction.commandName === 'killall') {
     killList.add('*')
-    await interaction.reply({ content: '✅ Kill command queued for **all** PCs', ephemeral: true })
+    await interaction.reply({ content: '✅ Kill command queued for **all** PCs', flags: 64 })
   }
 })
 
